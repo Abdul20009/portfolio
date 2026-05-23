@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+:root {
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --blue: #1a56db;
+  --blue-dark: #1241a8;
+  --blue-light: #e8f0fe;
+  --text-primary: #0a0a0f;
+  --text-secondary: #5a5a6e;
+  --text-tertiary: #9898a8;
+  --border: rgba(10,10,15,0.09);
+  --surface: #ffffff;
+  --surface-2: #f7f7fa;
+  --surface-3: #f0f0f5;
+  --green: #1D9E75;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--blue); color: #fff; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.animate-fade-up   { animation: fadeUp 0.7s cubic-bezier(.22,1,.36,1) both; }
+.animate-fade-up-1 { animation: fadeUp 0.7s cubic-bezier(.22,1,.36,1) 0.1s both; }
+.animate-fade-up-2 { animation: fadeUp 0.7s cubic-bezier(.22,1,.36,1) 0.2s both; }
+.animate-fade-up-3 { animation: fadeUp 0.7s cubic-bezier(.22,1,.36,1) 0.3s both; }
+.animate-fade-up-4 { animation: fadeUp 0.7s cubic-bezier(.22,1,.36,1) 0.4s both; }
+.animate-fade-in   { animation: fadeIn 0.9s ease both; }
