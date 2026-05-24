@@ -137,31 +137,31 @@ export default function Hero() {
             View my work
           </a>
           <a
-            href="mailto:abdulrahmanhamza270@gmail.com"
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "14px",
-              fontWeight: 500,
-              padding: "12px 28px",
-              background: "transparent",
-              color: "var(--text-primary)",
-              borderRadius: "8px",
-              textDecoration: "none",
-              border: "0.5px solid rgba(10,10,15,0.2)",
-              transition: "border-color 0.2s, transform 0.15s",
-              display: "inline-block",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.borderColor = "rgba(10,10,15,0.5)";
-              (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.borderColor = "rgba(10,10,15,0.2)";
-              (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-            }}
-          >
-            Get in touch
-          </a>
+            href="#contact"
+  style={{
+    fontFamily: "var(--font-body)",
+    fontSize: "14px",
+    fontWeight: 500,
+    padding: "12px 28px",
+    background: "transparent",
+    color: "var(--text-primary)",
+    borderRadius: "8px",
+    textDecoration: "none",
+    border: "0.5px solid rgba(10,10,15,0.2)",
+    transition: "border-color 0.2s, transform 0.15s",
+    display: "inline-block",
+  }}
+  onMouseEnter={(e) => {
+    (e.currentTarget as HTMLElement).style.borderColor = "rgba(10,10,15,0.5)";
+    (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
+  }}
+  onMouseLeave={(e) => {
+    (e.currentTarget as HTMLElement).style.borderColor = "rgba(10,10,15,0.2)";
+    (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+  }}
+>
+  Get in touch
+</a>
         </div>
 
         {/* Stats row */}
@@ -175,9 +175,9 @@ export default function Hero() {
           }}
         >
           {[
-            { num: "2+", label: "Years experience" },
-            { num: "10+", label: "Projects delivered" },
-            { num: "3", label: "Tech stacks" },
+            { num: "5+", label: "Years experience" },
+            { num: "20+", label: "Projects delivered" },
+            { num: "4", label: "Tech stacks" },
           ].map((s, i) => (
             <div
               key={s.label}
