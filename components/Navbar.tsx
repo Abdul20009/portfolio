@@ -68,7 +68,7 @@ export default function Navbar() {
       </div>
 
       <a
-        href="mailto:abdulrahmanhamza270@gmail.com"
+        href="#contact"
         style={{
           fontFamily: "var(--font-body)",
           fontSize: "13px",
