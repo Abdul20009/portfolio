@@ -38,14 +38,14 @@ export default function Skills() {
     <section
       id="skills"
       style={{
-        padding: "100px 40px",
+        padding: "clamp(60px, 10vw, 100px) clamp(20px, 5vw, 80px)",
         background: "var(--surface-2)",
         borderTop: "0.5px solid var(--border)",
         borderBottom: "0.5px solid var(--border)",
       }}
     >
       <div style={{ maxWidth: "960px", margin: "0 auto" }}>
-        <div style={{ marginBottom: "56px" }}>
+        <div style={{ marginBottom: "clamp(32px, 5vw, 56px)" }}>
           <p
             style={{
               fontFamily: "var(--font-display)",
@@ -62,7 +62,7 @@ export default function Skills() {
           <h2
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(28px, 4vw, 42px)",
+              fontSize: "clamp(26px, 5vw, 42px)",
               fontWeight: 700,
               letterSpacing: "-1px",
               color: "var(--text-primary)",
@@ -75,7 +75,7 @@ export default function Skills() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 240px), 1fr))",
             gap: "12px",
           }}
         >
@@ -86,10 +86,10 @@ export default function Skills() {
                 background: "var(--surface)",
                 border: "0.5px solid var(--border)",
                 borderRadius: "12px",
-                padding: "20px 22px",
+                padding: "18px 20px",
                 display: "flex",
                 alignItems: "flex-start",
-                gap: "14px",
+                gap: "12px",
                 transition: "transform 0.2s, box-shadow 0.2s",
                 cursor: "default",
               }}
@@ -117,7 +117,7 @@ export default function Skills() {
               >
                 {skill.icon}
               </div>
-              <div>
+              <div style={{ minWidth: 0 }}>
                 <div
                   style={{
                     fontFamily: "var(--font-display)",
@@ -125,6 +125,9 @@ export default function Skills() {
                     fontWeight: 600,
                     color: "var(--text-primary)",
                     marginBottom: "3px",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
                   }}
                 >
                   {skill.name}
@@ -140,6 +143,7 @@ export default function Skills() {
                     borderRadius: "99px",
                     background: categoryColor[skill.category] ?? "#f0f0f5",
                     color: categoryText[skill.category] ?? "#5a5a6e",
+                    display: "inline-block",
                   }}
                 >
                   {skill.category}

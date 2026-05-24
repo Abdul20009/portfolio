@@ -8,13 +8,13 @@ export default function Hero() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        padding: "120px 40px 80px",
+        padding: "clamp(100px, 15vw, 140px) clamp(20px, 5vw, 80px) clamp(60px, 8vw, 100px)",
         position: "relative",
         overflow: "hidden",
         background: "linear-gradient(160deg, #f7f7fa 0%, #ffffff 60%)",
       }}
     >
-      {/* Background grid decoration */}
+      {/* Background grid */}
       <div
         style={{
           position: "absolute",
@@ -33,15 +33,15 @@ export default function Hero() {
           position: "absolute",
           top: "20%",
           right: "-80px",
-          width: "520px",
-          height: "520px",
+          width: "clamp(200px, 40vw, 520px)",
+          height: "clamp(200px, 40vw, 520px)",
           borderRadius: "50%",
           background: "radial-gradient(circle, rgba(26,86,219,0.07) 0%, transparent 70%)",
           pointerEvents: "none",
         }}
       />
 
-      <div style={{ position: "relative", maxWidth: "860px" }}>
+      <div style={{ position: "relative", maxWidth: "860px", width: "100%" }}>
         {/* Badge */}
         <div
           className="animate-fade-up"
@@ -49,15 +49,16 @@ export default function Hero() {
             display: "inline-flex",
             alignItems: "center",
             gap: "8px",
-            fontSize: "12px",
+            fontSize: "clamp(10px, 2vw, 12px)",
             fontFamily: "var(--font-body)",
             padding: "6px 14px",
             background: "var(--surface)",
             border: "0.5px solid var(--border)",
             borderRadius: "99px",
             color: "var(--text-secondary)",
-            marginBottom: "28px",
+            marginBottom: "24px",
             letterSpacing: "0.2px",
+            flexWrap: "wrap",
           }}
         >
           <span
@@ -68,6 +69,7 @@ export default function Hero() {
               background: "var(--green)",
               animation: "pulse-dot 2s ease-in-out infinite",
               display: "inline-block",
+              flexShrink: 0,
             }}
           />
           Available for freelance & full-time roles · Lagos, Nigeria
@@ -78,12 +80,12 @@ export default function Hero() {
           className="animate-fade-up-1"
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(44px, 7vw, 80px)",
+            fontSize: "clamp(40px, 9vw, 80px)",
             fontWeight: 800,
             lineHeight: 1.05,
-            letterSpacing: "-2px",
+            letterSpacing: "clamp(-1px, -0.03em, -2px)",
             color: "var(--text-primary)",
-            marginBottom: "28px",
+            marginBottom: "24px",
           }}
         >
           Flutter & Web
@@ -97,12 +99,12 @@ export default function Hero() {
           className="animate-fade-up-2"
           style={{
             fontFamily: "var(--font-body)",
-            fontSize: "18px",
+            fontSize: "clamp(15px, 2.5vw, 18px)",
             fontWeight: 300,
             color: "var(--text-secondary)",
             lineHeight: 1.7,
             maxWidth: "520px",
-            marginBottom: "40px",
+            marginBottom: "36px",
           }}
         >
           I&apos;m Hamzat Abdulrahman — a solo developer building fast, clean mobile apps
@@ -110,7 +112,10 @@ export default function Hero() {
         </p>
 
         {/* CTAs */}
-        <div className="animate-fade-up-3" style={{ display: "flex", gap: "14px", flexWrap: "wrap", marginBottom: "64px" }}>
+        <div
+          className="animate-fade-up-3"
+          style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "52px" }}
+        >
           <a
             href="#projects"
             style={{
@@ -138,30 +143,30 @@ export default function Hero() {
           </a>
           <a
             href="#contact"
-  style={{
-    fontFamily: "var(--font-body)",
-    fontSize: "14px",
-    fontWeight: 500,
-    padding: "12px 28px",
-    background: "transparent",
-    color: "var(--text-primary)",
-    borderRadius: "8px",
-    textDecoration: "none",
-    border: "0.5px solid rgba(10,10,15,0.2)",
-    transition: "border-color 0.2s, transform 0.15s",
-    display: "inline-block",
-  }}
-  onMouseEnter={(e) => {
-    (e.currentTarget as HTMLElement).style.borderColor = "rgba(10,10,15,0.5)";
-    (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
-  }}
-  onMouseLeave={(e) => {
-    (e.currentTarget as HTMLElement).style.borderColor = "rgba(10,10,15,0.2)";
-    (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-  }}
->
-  Get in touch
-</a>
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: "14px",
+              fontWeight: 500,
+              padding: "12px 28px",
+              background: "transparent",
+              color: "var(--text-primary)",
+              borderRadius: "8px",
+              textDecoration: "none",
+              border: "0.5px solid rgba(10,10,15,0.2)",
+              transition: "border-color 0.2s, transform 0.15s",
+              display: "inline-block",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.borderColor = "rgba(10,10,15,0.5)";
+              (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.borderColor = "rgba(10,10,15,0.2)";
+              (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+            }}
+          >
+            Get in touch
+          </a>
         </div>
 
         {/* Stats row */}
@@ -171,7 +176,9 @@ export default function Hero() {
             display: "flex",
             gap: "0",
             borderTop: "0.5px solid var(--border)",
-            paddingTop: "32px",
+            paddingTop: "28px",
+            flexWrap: "wrap",
+            rowGap: "20px",
           }}
         >
           {[
@@ -182,15 +189,15 @@ export default function Hero() {
             <div
               key={s.label}
               style={{
-                paddingRight: "48px",
-                marginRight: "48px",
+                paddingRight: "clamp(20px, 4vw, 48px)",
+                marginRight: "clamp(20px, 4vw, 48px)",
                 borderRight: i < 2 ? "0.5px solid var(--border)" : "none",
               }}
             >
               <div
                 style={{
                   fontFamily: "var(--font-display)",
-                  fontSize: "32px",
+                  fontSize: "clamp(24px, 4vw, 32px)",
                   fontWeight: 700,
                   color: "var(--text-primary)",
                   letterSpacing: "-1px",
@@ -198,7 +205,7 @@ export default function Hero() {
               >
                 {s.num}
               </div>
-              <div style={{ fontSize: "13px", color: "var(--text-tertiary)", marginTop: "2px" }}>
+              <div style={{ fontSize: "clamp(11px, 1.5vw, 13px)", color: "var(--text-tertiary)", marginTop: "2px" }}>
                 {s.label}
               </div>
             </div>

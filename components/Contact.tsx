@@ -31,14 +31,14 @@ export default function Contact() {
     <section
       id="contact"
       style={{
-        padding: "100px 40px",
+        padding: "clamp(60px, 10vw, 100px) clamp(20px, 5vw, 80px)",
         background: "var(--surface)",
         borderBottom: "0.5px solid var(--border)",
       }}
     >
       <div style={{ maxWidth: "960px", margin: "0 auto" }}>
         {/* Header */}
-        <div style={{ marginBottom: "56px" }}>
+        <div style={{ marginBottom: "clamp(32px, 5vw, 56px)" }}>
           <p
             style={{
               fontFamily: "var(--font-display)",
@@ -55,7 +55,7 @@ export default function Contact() {
           <h2
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(28px, 4vw, 42px)",
+              fontSize: "clamp(26px, 5vw, 42px)",
               fontWeight: 700,
               letterSpacing: "-1px",
               color: "var(--text-primary)",
@@ -66,16 +66,24 @@ export default function Contact() {
           </h2>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "48px", alignItems: "start" }}>
+        {/* Two-column layout — stacks on mobile */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
+            gap: "clamp(24px, 5vw, 48px)",
+            alignItems: "start",
+          }}
+        >
           {/* Left */}
           <div>
             <p
               style={{
-                fontSize: "15px",
+                fontSize: "clamp(14px, 2vw, 15px)",
                 fontWeight: 300,
                 color: "var(--text-secondary)",
                 lineHeight: 1.8,
-                marginBottom: "36px",
+                marginBottom: "28px",
               }}
             >
               I&apos;m open to freelance projects, full-time developer roles, and interesting
@@ -83,7 +91,7 @@ export default function Contact() {
               let&apos;s talk. I respond quickly.
             </p>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
               {socials.map((s) => (
                 <a
                   key={s.label}
@@ -110,16 +118,25 @@ export default function Contact() {
                     (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
                   }}
                 >
-                  <span style={{ fontSize: "20px" }}>{s.icon}</span>
-                  <div>
+                  <span style={{ fontSize: "20px", flexShrink: 0 }}>{s.icon}</span>
+                  <div style={{ minWidth: 0, flex: 1 }}>
                     <div style={{ fontSize: "11px", color: "var(--text-tertiary)", marginBottom: "1px" }}>
                       {s.label}
                     </div>
-                    <div style={{ fontSize: "13px", fontWeight: 500, color: "var(--text-primary)" }}>
+                    <div
+                      style={{
+                        fontSize: "13px",
+                        fontWeight: 500,
+                        color: "var(--text-primary)",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
                       {s.value}
                     </div>
                   </div>
-                  <span style={{ marginLeft: "auto", fontSize: "14px", color: "var(--text-tertiary)" }}>→</span>
+                  <span style={{ marginLeft: "auto", fontSize: "14px", color: "var(--text-tertiary)", flexShrink: 0 }}>→</span>
                 </a>
               ))}
             </div>
@@ -132,7 +149,7 @@ export default function Contact() {
                 background: "var(--surface-2)",
                 border: "0.5px solid var(--border)",
                 borderRadius: "16px",
-                padding: "32px",
+                padding: "clamp(20px, 3vw, 32px)",
                 marginBottom: "16px",
               }}
             >
@@ -155,6 +172,7 @@ export default function Contact() {
                     background: "var(--green)",
                     animation: "pulse-dot 2s ease-in-out infinite",
                     display: "inline-block",
+                    flexShrink: 0,
                   }}
                 />
                 Actively looking
@@ -162,7 +180,7 @@ export default function Contact() {
               <h3
                 style={{
                   fontFamily: "var(--font-display)",
-                  fontSize: "20px",
+                  fontSize: "clamp(17px, 2.5vw, 20px)",
                   fontWeight: 700,
                   letterSpacing: "-0.3px",
                   marginBottom: "8px",
@@ -213,7 +231,7 @@ export default function Contact() {
                 gap: "12px",
               }}
             >
-              <span style={{ fontSize: "22px" }}>📍</span>
+              <span style={{ fontSize: "22px", flexShrink: 0 }}>📍</span>
               <div>
                 <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.6)", marginBottom: "2px" }}>
                   Based in

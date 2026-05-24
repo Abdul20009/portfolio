@@ -50,3 +50,13 @@ body {
 .animate-fade-up-3 { animation: fadeUp 0.7s cubic-bezier(.22,1,.36,1) 0.3s both; }
 .animate-fade-up-4 { animation: fadeUp 0.7s cubic-bezier(.22,1,.36,1) 0.4s both; }
 .animate-fade-in   { animation: fadeIn 0.9s ease both; }
+
+/* ── Responsive helpers ── */
+@media (max-width: 768px) {
+  .desktop-nav { display: none !important; }
+  .mobile-menu-btn { display: flex !important; }
+}
+@media (min-width: 769px) {
+  .mobile-menu-btn { display: none !important; }
+  .mobile-menu { display: none !important; }
+}

@@ -31,14 +31,13 @@ export default function Services() {
     <section
       id="services"
       style={{
-        padding: "100px 40px",
+        padding: "clamp(60px, 10vw, 100px) clamp(20px, 5vw, 80px)",
         background: "var(--surface-2)",
         borderBottom: "0.5px solid var(--border)",
       }}
     >
       <div style={{ maxWidth: "960px", margin: "0 auto" }}>
-        {/* Header */}
-        <div style={{ marginBottom: "56px" }}>
+        <div style={{ marginBottom: "clamp(32px, 5vw, 56px)" }}>
           <p
             style={{
               fontFamily: "var(--font-display)",
@@ -55,7 +54,7 @@ export default function Services() {
           <h2
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(28px, 4vw, 42px)",
+              fontSize: "clamp(26px, 5vw, 42px)",
               fontWeight: 700,
               letterSpacing: "-1px",
               color: "var(--text-primary)",
@@ -65,11 +64,10 @@ export default function Services() {
           </h2>
         </div>
 
-        {/* Services grid */}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(420px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 340px), 1fr))",
             gap: "16px",
           }}
         >
@@ -80,7 +78,7 @@ export default function Services() {
                 background: "var(--surface)",
                 border: "0.5px solid var(--border)",
                 borderRadius: "14px",
-                padding: "28px 30px",
+                padding: "clamp(20px, 3vw, 30px)",
                 transition: "transform 0.2s, box-shadow 0.2s",
               }}
               onMouseEnter={(e) => {
@@ -92,11 +90,11 @@ export default function Services() {
                 (e.currentTarget as HTMLElement).style.boxShadow = "none";
               }}
             >
-              <div style={{ fontSize: "28px", marginBottom: "16px" }}>{s.icon}</div>
+              <div style={{ fontSize: "28px", marginBottom: "14px" }}>{s.icon}</div>
               <h3
                 style={{
                   fontFamily: "var(--font-display)",
-                  fontSize: "16px",
+                  fontSize: "clamp(14px, 2vw, 16px)",
                   fontWeight: 700,
                   color: "var(--text-primary)",
                   marginBottom: "10px",
@@ -110,7 +108,7 @@ export default function Services() {
                   fontSize: "14px",
                   color: "var(--text-secondary)",
                   lineHeight: 1.7,
-                  marginBottom: "18px",
+                  marginBottom: "16px",
                   fontWeight: 300,
                 }}
               >

@@ -37,7 +37,7 @@ const projects = [
       "Custom websites for small local businesses in Lagos with no online presence. Clients identified via Google Maps outreach and converted through WhatsApp.",
     tags: ["Next.js", "HTML/CSS", "SEO", "Responsive"],
     link: "https://github.com/Abdul20009",
-     status: "Live",
+    status: "Live",
     accent: "#e8f0fe",
     accentText: "#1241a8",
   },
@@ -48,13 +48,13 @@ export default function Projects() {
     <section
       id="projects"
       style={{
-        padding: "100px 40px",
+        padding: "clamp(60px, 10vw, 100px) clamp(20px, 5vw, 80px)",
         background: "var(--surface)",
         borderBottom: "0.5px solid var(--border)",
       }}
     >
       <div style={{ maxWidth: "960px", margin: "0 auto" }}>
-        <div style={{ marginBottom: "56px" }}>
+        <div style={{ marginBottom: "clamp(32px, 5vw, 56px)" }}>
           <p
             style={{
               fontFamily: "var(--font-display)",
@@ -68,11 +68,19 @@ export default function Projects() {
           >
             What I&apos;ve built
           </p>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: "16px" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-end",
+              flexWrap: "wrap",
+              gap: "12px",
+            }}
+          >
             <h2
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(28px, 4vw, 42px)",
+                fontSize: "clamp(26px, 5vw, 42px)",
                 fontWeight: 700,
                 letterSpacing: "-1px",
                 color: "var(--text-primary)",
@@ -92,6 +100,7 @@ export default function Projects() {
                 alignItems: "center",
                 gap: "4px",
                 fontWeight: 500,
+                whiteSpace: "nowrap",
               }}
             >
               View all on GitHub →
@@ -102,7 +111,7 @@ export default function Projects() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(420px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 340px), 1fr))",
             gap: "16px",
           }}
         >
@@ -116,7 +125,7 @@ export default function Projects() {
                 background: "var(--surface)",
                 border: "0.5px solid var(--border)",
                 borderRadius: "14px",
-                padding: "26px 28px",
+                padding: "24px",
                 textDecoration: "none",
                 color: "inherit",
                 display: "block",
@@ -133,19 +142,28 @@ export default function Projects() {
                 (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
               }}
             >
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "12px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "flex-start",
+                  marginBottom: "10px",
+                  gap: "8px",
+                }}
+              >
                 <h3
                   style={{
                     fontFamily: "var(--font-display)",
-                    fontSize: "17px",
+                    fontSize: "clamp(15px, 2vw, 17px)",
                     fontWeight: 700,
                     color: "var(--text-primary)",
                     letterSpacing: "-0.3px",
+                    flex: 1,
                   }}
                 >
                   {p.title}
                 </h3>
-                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "6px", flexShrink: 0 }}>
                   <span
                     style={{
                       fontSize: "11px",
@@ -167,7 +185,7 @@ export default function Projects() {
                   fontSize: "14px",
                   color: "var(--text-secondary)",
                   lineHeight: 1.7,
-                  marginBottom: "18px",
+                  marginBottom: "16px",
                   fontWeight: 300,
                 }}
               >

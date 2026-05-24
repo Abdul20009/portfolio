@@ -3,7 +3,7 @@ export default function Footer() {
   return (
     <footer
       style={{
-        padding: "28px 40px",
+        padding: "clamp(20px, 4vw, 28px) clamp(20px, 5vw, 40px)",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
@@ -23,10 +23,10 @@ export default function Footer() {
       >
         H<span style={{ color: "var(--blue)" }}>.</span>A
       </div>
-      <p style={{ fontSize: "12px", color: "var(--text-tertiary)" }}>
+      <p style={{ fontSize: "12px", color: "var(--text-tertiary)", textAlign: "center" }}>
         © {new Date().getFullYear()} Hamzat Abdulrahman. All rights reserved.
       </p>
-      <div style={{ display: "flex", gap: "20px" }}>
+      <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
         {[
           { label: "GitHub", href: "https://github.com/Abdul20009" },
           { label: "LinkedIn", href: "https://www.linkedin.com/in/abdulrahman-hamza-564135309/" },
