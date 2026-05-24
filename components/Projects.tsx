@@ -37,9 +37,9 @@ const projects = [
       "Custom websites for small local businesses in Lagos with no online presence. Clients identified via Google Maps outreach and converted through WhatsApp.",
     tags: ["Next.js", "HTML/CSS", "SEO", "Responsive"],
     link: "https://github.com/Abdul20009",
-    status: "Ongoing",
-    accent: "#fef3e8",
-    accentText: "#a85a00",
+     status: "Live",
+    accent: "#e8f0fe",
+    accentText: "#1241a8",
   },
 ];
 
