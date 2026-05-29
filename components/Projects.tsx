@@ -2,21 +2,34 @@
 
 const projects = [
   {
+    title: "DevBudget",
+    description:
+      "A free tool that helps developers estimate monthly infrastructure costs across 25+ popular services — at any user scale. Features Africa Mode that flags services with card restrictions or signup blockers for African developers.",
+    tags: ["React", "Vite", "Node.js", "Open Source"],
+    link: "https://devbudget.vercel.app",
+    githubLink: "https://github.com/Abdul20009/devbudget",
+    status: "Live",
+    accent: "#e6f9f2",
+    accentText: "#0F6E56",
+  },
+  {
     title: "E-commerce Platform",
     description:
       "A full-featured online store with product listings, cart management, order tracking, and Paystack payment integration. Built for Nigerian sellers and buyers.",
     tags: ["Next.js", "Node.js", "MongoDB", "Paystack", "Cloudinary"],
-    link: "https://github.com/Abdul20009",
+    link: "https://hrexclusivelounge.lovable.app/",
+    githubLink: "https://github.com/Abdul20009",
     status: "Live",
     accent: "#e8f0fe",
     accentText: "#1241a8",
   },
   {
-    title: "Fintech App",
+    title: "Fintech App — SMARTROB",
     description:
-      "A mobile-first financial application handling wallet management, transfers, and transaction history. Designed with security and simplicity for everyday users.",
+      "A mobile-first financial application handling wallet management, transfers, and transaction history. Built during my time at SMARTROB Technologies. Designed with security and simplicity for everyday users.",
     tags: ["Flutter", "Node.js", "MongoDB", "Paystack"],
-    link: "https://github.com/Abdul20009",
+    link: "https://play.google.com/store/apps/details?id=com.fincura.billpayment",
+    githubLink: "https://github.com/Abdul20009",
     status: "Live",
     accent: "#e6f9f2",
     accentText: "#0F6E56",
@@ -27,6 +40,7 @@ const projects = [
       "End-to-end mobile application with Flutter frontend, Node.js/Express backend, MongoDB database, Cloudinary for media, and Paystack payment integration.",
     tags: ["Flutter", "Node.js", "MongoDB", "Cloudinary", "Paystack"],
     link: "https://github.com/Abdul20009",
+    githubLink: "https://github.com/Abdul20009",
     status: "Live",
     accent: "#e8f0fe",
     accentText: "#1241a8",
@@ -36,7 +50,8 @@ const projects = [
     description:
       "Custom websites for small local businesses in Lagos with no online presence. Clients identified via Google Maps outreach and converted through WhatsApp.",
     tags: ["Next.js", "HTML/CSS", "SEO", "Responsive"],
-    link: "https://github.com/Abdul20009",
+    link: "https://soul-food-yaba.lovable.app/",
+    githubLink: "https://github.com/Abdul20009",
     status: "Live",
     accent: "#e8f0fe",
     accentText: "#1241a8",
@@ -116,19 +131,15 @@ export default function Projects() {
           }}
         >
           {projects.map((p) => (
-            <a
+            <div
               key={p.title}
-              href={p.link}
-              target="_blank"
-              rel="noopener noreferrer"
               style={{
                 background: "var(--surface)",
                 border: "0.5px solid var(--border)",
                 borderRadius: "14px",
                 padding: "24px",
-                textDecoration: "none",
-                color: "inherit",
-                display: "block",
+                display: "flex",
+                flexDirection: "column",
                 transition: "transform 0.2s, box-shadow 0.2s, border-color 0.2s",
               }}
               onMouseEnter={(e) => {
@@ -163,21 +174,19 @@ export default function Projects() {
                 >
                   {p.title}
                 </h3>
-                <div style={{ display: "flex", alignItems: "center", gap: "6px", flexShrink: 0 }}>
-                  <span
-                    style={{
-                      fontSize: "11px",
-                      fontWeight: 500,
-                      padding: "3px 10px",
-                      borderRadius: "99px",
-                      background: p.accent,
-                      color: p.accentText,
-                    }}
-                  >
-                    {p.status}
-                  </span>
-                  <span style={{ fontSize: "16px", color: "var(--text-tertiary)" }}>↗</span>
-                </div>
+                <span
+                  style={{
+                    fontSize: "11px",
+                    fontWeight: 500,
+                    padding: "3px 10px",
+                    borderRadius: "99px",
+                    background: p.accent,
+                    color: p.accentText,
+                    flexShrink: 0,
+                  }}
+                >
+                  {p.status}
+                </span>
               </div>
 
               <p
@@ -187,12 +196,13 @@ export default function Projects() {
                   lineHeight: 1.7,
                   marginBottom: "16px",
                   fontWeight: 300,
+                  flex: 1,
                 }}
               >
                 {p.description}
               </p>
 
-              <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
+              <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: "16px" }}>
                 {p.tags.map((tag) => (
                   <span
                     key={tag}
@@ -209,7 +219,48 @@ export default function Projects() {
                   </span>
                 ))}
               </div>
-            </a>
+
+              <div style={{ display: "flex", gap: "8px" }}>
+                <a
+                  href={p.githubLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    fontSize: "12px",
+                    color: "var(--text-secondary)",
+                    textDecoration: "none",
+                    padding: "6px 14px",
+                    borderRadius: "99px",
+                    border: "0.5px solid var(--border)",
+                    fontWeight: 500,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "4px",
+                  }}
+                >
+                  Code ↗
+                </a>
+                <a
+                  href={p.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    fontSize: "12px",
+                    color: p.accentText,
+                    textDecoration: "none",
+                    padding: "6px 14px",
+                    borderRadius: "99px",
+                    background: p.accent,
+                    fontWeight: 500,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "4px",
+                  }}
+                >
+                  Live Site ↗
+                </a>
+              </div>
+            </div>
           ))}
         </div>
       </div>
