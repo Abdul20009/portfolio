@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Hamzat Abdulrahman — Flutter & Web Developer",
-  description: "Flutter and full-stack web developer based in Lagos, Nigeria. Building fast, clean digital products for businesses and startups.",
-  keywords: ["Flutter developer", "web developer", "Lagos", "Nigeria", "Next.js", "Node.js", "mobile app"],
+  title: "Hamzat Abdulrahman — Full-Stack & Mobile Engineer",
+  description: "Full-stack and mobile engineer (React, Next.js, Node.js, TypeScript, Flutter) with 3+ years shipping production fintech — remittance, wallets, bill payments and agent banking — to live users on App Store and Google Play. Author of OpenPay NG payment SDK and WikiRide API.",
+  keywords: ["Full-stack engineer", "Flutter developer", "React", "Next.js", "Node.js", "TypeScript", "Paystack", "Flutterwave", "Lagos", "Nigeria", "fintech"],
   openGraph: {
-    title: "Hamzat Abdulrahman — Flutter & Web Developer",
-    description: "Building fast, clean digital products — mobile apps and websites — for businesses and startups.",
+    title: "Hamzat Abdulrahman — Full-Stack & Mobile Engineer",
+    description: "3+ years building production fintech: Flutter clients, Node.js/TypeScript backends, payments and webhooks. OpenPay NG + WikiRide API author.",
     type: "website",
   },
 };
