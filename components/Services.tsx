@@ -1,145 +1,85 @@
 "use client";
+import { Smartphone, Globe, Server, CreditCard, ArrowUpRight } from "lucide-react";
+import Reveal from "./Reveal";
+
 const services = [
   {
-    icon: "📱",
-    title: "Mobile app development",
-    desc: "Cross-platform Flutter apps for Android and iOS. From MVP to production — clean architecture, smooth UX, and real integrations like payments and media.",
-    bullets: ["Flutter / Dart", "Android & iOS", "Paystack & API integration"],
+    icon: Smartphone,
+    num: "01",
+    title: "Mobile engineering",
+    desc: "Production Flutter apps on the App Store and Play — clean architecture, BLoC/Provider, biometrics, push, offline storage, widget tests, release engineering.",
+    bullets: ["Flutter / Dart", "BLoC & Provider", "Store submissions"],
+    accent: "bg-[#e8f0fe] text-[#1241a8]",
   },
   {
-    icon: "🌐",
-    title: "Web design & development",
-    desc: "Clean, fast websites for businesses that need an online presence. I build sites that actually convert — not just look good.",
-    bullets: ["Next.js / React / Vue", "Responsive & SEO-ready", "Custom designs"],
+    icon: Server,
+    num: "02",
+    title: "Backend & APIs",
+    desc: "Node.js/TypeScript backends with contract-first REST design, JWT + rotating refresh, RBAC, Zod validation, rate limiting, Pino logging, Vitest/Supertest.",
+    bullets: ["Node.js / Express", "JWT + RBAC", "Postgres / MongoDB"],
+    accent: "bg-[#e6f9f2] text-[#0F6E56]",
   },
   {
-    icon: "⚙️",
-    title: "Backend & API development",
-    desc: "Scalable Node.js backends with well-designed REST APIs, MongoDB databases, authentication, and third-party service integrations.",
-    bullets: ["Node.js / Express", "MongoDB", "Auth & webhooks"],
+    icon: CreditCard,
+    num: "03",
+    title: "Payment integration",
+    desc: "My specialty: Paystack, Flutterwave, Bachs and Stripe — normalized models, transfers/refunds, signature-verified webhooks, idempotency, KYC/compliance flows.",
+    bullets: ["Paystack / Flutterwave", "Webhooks + idempotency", "KYC flows"],
+    accent: "bg-[#fef3e8] text-[#a85a00]",
   },
   {
-    icon: "🤖",
-    title: "AI bot development",
-    desc: "Custom AI chatbots deployed on WhatsApp and Telegram using Claude or OpenAI. Automate customer support, lead capture, or any workflow.",
-    bullets: ["Telegram & WhatsApp", "Claude / OpenAI APIs", "Python / FastAPI"],
+    icon: Globe,
+    num: "04",
+    title: "Web frontends",
+    desc: "React/Next.js + TypeScript marketing sites, dashboards and SaaS frontends that consume the APIs I document — handoff-ready for product teams.",
+    bullets: ["React / Next.js", "TypeScript", "API handoff docs"],
+    accent: "bg-[#f0e8fe] text-[#5a00a8]",
   },
 ];
 
 export default function Services() {
   return (
-    <section
-      id="services"
-      style={{
-        padding: "clamp(60px, 10vw, 100px) clamp(20px, 5vw, 80px)",
-        background: "var(--surface-2)",
-        borderBottom: "0.5px solid var(--border)",
-      }}
-    >
-      <div style={{ maxWidth: "960px", margin: "0 auto" }}>
-        <div style={{ marginBottom: "clamp(32px, 5vw, 56px)" }}>
-          <p
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "11px",
-              letterSpacing: "2px",
-              textTransform: "uppercase",
-              color: "var(--blue)",
-              fontWeight: 600,
-              marginBottom: "12px",
-            }}
-          >
-            What I offer
+    <section id="services" className="bg-[#0b0b12] px-5 py-20 text-white sm:px-8 sm:py-28">
+      <div className="mx-auto max-w-6xl">
+        <Reveal className="mb-10 sm:mb-14 max-w-2xl">
+          <p className="font-display mb-3 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#7ea4ff]">
+            <span className="inline-block h-[1.5px] w-6 bg-[#7ea4ff]" /> What I offer
           </p>
-          <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(26px, 5vw, 42px)",
-              fontWeight: 700,
-              letterSpacing: "-1px",
-              color: "var(--text-primary)",
-            }}
-          >
-            Services
+          <h2 className="font-display text-[clamp(28px,5vw,44px)] font-bold leading-[1.05] tracking-[-0.02em]">
+            Services designed to <span className="text-gradient">ship value</span>
           </h2>
-        </div>
+          <p className="mt-4 max-w-xl text-[15px] font-light leading-relaxed text-white/60">
+            Contract-friendly: own a feature end to end, join your codebase, overlap EU hours from Lagos (UTC+1).
+          </p>
+        </Reveal>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 340px), 1fr))",
-            gap: "16px",
-          }}
-        >
-          {services.map((s) => (
-            <div
-              key={s.title}
-              style={{
-                background: "var(--surface)",
-                border: "0.5px solid var(--border)",
-                borderRadius: "14px",
-                padding: "clamp(20px, 3vw, 30px)",
-                transition: "transform 0.2s, box-shadow 0.2s",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)";
-                (e.currentTarget as HTMLElement).style.boxShadow = "0 10px 28px rgba(26,86,219,0.08)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-                (e.currentTarget as HTMLElement).style.boxShadow = "none";
-              }}
-            >
-              <div style={{ fontSize: "28px", marginBottom: "14px" }}>{s.icon}</div>
-              <h3
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "clamp(14px, 2vw, 16px)",
-                  fontWeight: 700,
-                  color: "var(--text-primary)",
-                  marginBottom: "10px",
-                  letterSpacing: "-0.2px",
-                }}
-              >
-                {s.title}
-              </h3>
-              <p
-                style={{
-                  fontSize: "14px",
-                  color: "var(--text-secondary)",
-                  lineHeight: 1.7,
-                  marginBottom: "16px",
-                  fontWeight: 300,
-                }}
-              >
-                {s.desc}
-              </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                {s.bullets.map((b) => (
-                  <div
-                    key={b}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "8px",
-                      fontSize: "13px",
-                      color: "var(--text-secondary)",
-                    }}
-                  >
-                    <span
-                      style={{
-                        width: "5px",
-                        height: "5px",
-                        borderRadius: "50%",
-                        background: "var(--blue)",
-                        flexShrink: 0,
-                      }}
-                    />
-                    {b}
+        <div className="grid gap-4 md:grid-cols-2">
+          {services.map((s, i) => (
+            <Reveal key={s.title} delay={(i % 2) * 110} variant={i % 2 ? "right" : "left"}>
+              <div className="group relative h-full overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-7 backdrop-blur transition-all duration-500 hover:-translate-y-1.5 hover:border-[#1a56db]/50 hover:bg-white/[0.06] hover:shadow-[0_25px_60px_-20px_rgba(26,86,219,0.5)] sm:p-8">
+                <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[radial-gradient(circle,rgba(26,86,219,0.25),transparent_65%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="relative flex items-start justify-between">
+                  <div className={`flex h-12 w-12 items-center justify-center rounded-2xl ${s.accent} transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6`}>
+                    <s.icon className="h-5 w-5" />
                   </div>
-                ))}
+                  <span className="font-display text-sm font-bold text-white/25 transition-colors group-hover:text-white/50">
+                    /{s.num}
+                  </span>
+                </div>
+                <h3 className="font-display relative mt-5 text-[19px] font-bold tracking-tight">{s.title}</h3>
+                <p className="relative mt-2.5 text-[14px] font-light leading-[1.7] text-white/60">{s.desc}</p>
+                <div className="relative mt-5 flex flex-wrap gap-2">
+                  {s.bullets.map((b) => (
+                    <span key={b} className="rounded-full border border-white/12 bg-white/[0.05] px-3 py-1.5 text-[11.5px] font-medium text-white/75">
+                      {b}
+                    </span>
+                  ))}
+                </div>
+                <a href="#contact" className="relative mt-6 inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#7ea4ff] transition-colors hover:text-white">
+                  Start a project <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </a>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
