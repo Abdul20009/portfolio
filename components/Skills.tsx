@@ -1,155 +1,84 @@
 "use client";
+import { useEffect, useRef, useState } from "react";
+import { Smartphone, Server, Atom, Database, CreditCard, FlaskConical, Cloud, GitBranch } from "lucide-react";
+import Reveal from "./Reveal";
+import SectionHeading from "./SectionHeading";
 
 const skills = [
-  { name: "Flutter / Dart", category: "Mobile", icon: "📱", desc: "Cross-platform apps for Android & iOS" },
-  { name: "Node.js / Express", category: "Backend", icon: "⚙️", desc: "REST APIs, auth, webhooks" },
-  { name: "React / Next.js", category: "Frontend", icon: "⚛️", desc: "Fast, SEO-friendly web apps" },
-  { name: "MongoDB", category: "Database", icon: "🗄️", desc: "Schema design & Mongoose ODM" },
-  { name: "Python / FastAPI", category: "AI & Backend", icon: "🐍", desc: "AI integrations & fast APIs" },
-  { name: "Cloudinary", category: "Media", icon: "☁️", desc: "Image upload & optimization" },
-  { name: "Paystack", category: "Payments", icon: "💳", desc: "Nigerian payment integrations" },
-  { name: "Git / GitHub", category: "Tools", icon: "🔧", desc: "Version control & collaboration" },
+  { name: "Flutter / Dart", category: "Mobile", icon: Smartphone, level: 92, desc: "BLoC & Provider, biometrics, push, offline" },
+  { name: "React / Next.js", category: "Frontend", icon: Atom, level: 88, desc: "TypeScript, ES6+, production web apps" },
+  { name: "Node.js / Express", category: "Backend", icon: Server, level: 90, desc: "REST design, JWT, RBAC, WebSockets" },
+  { name: "PostgreSQL / MongoDB", category: "Database", icon: Database, level: 85, desc: "Postgres, Mongo, MySQL, Firestore" },
+  { name: "Paystack / Flutterwave", category: "Payments", icon: CreditCard, level: 94, desc: "Bachs, Stripe, webhooks, idempotency, KYC" },
+  { name: "Vitest / Supertest", category: "Testing", icon: FlaskConical, level: 82, desc: "Zod, Pino, widget tests, rate limiting" },
+  { name: "Cloudinary / Vercel", category: "Cloud", icon: Cloud, level: 84, desc: "Media, deploys, Render, Docker" },
+  { name: "Git / GitHub / GitLab", category: "Tools", icon: GitBranch, level: 89, desc: "Code review, release engineering" },
 ];
 
-const categoryColor: Record<string, string> = {
-  Mobile: "#e8f0fe",
-  Backend: "#e6f9f2",
-  Frontend: "#fef3e8",
-  Database: "#f0e8fe",
-  "AI & Backend": "#e8f6fe",
-  Media: "#e8f4fe",
-  Payments: "#e8feef",
-  Tools: "#f5f5f5",
-};
-
-const categoryText: Record<string, string> = {
-  Mobile: "#1241a8",
-  Backend: "#0F6E56",
-  Frontend: "#a85a00",
-  Database: "#5a00a8",
-  "AI & Backend": "#0a5c8a",
-  Media: "#0a5c8a",
-  Payments: "#0a7a3c",
-  Tools: "#5a5a6e",
-};
+function SkillBar({ level }: { level: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [w, setW] = useState(0);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setW(level);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.4 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [level]);
+  return (
+    <div ref={ref} className="h-1.5 overflow-hidden rounded-full bg-black/[0.07]">
+      <div
+        className="h-full rounded-full bg-gradient-to-r from-[#1a56db] to-[#7c3aed] transition-[width] duration-[1.2s] ease-[cubic-bezier(0.22,1,0.36,1)]"
+        style={{ width: `${w}%` }}
+      />
+    </div>
+  );
+}
 
 export default function Skills() {
   return (
-    <section
-      id="skills"
-      style={{
-        padding: "clamp(60px, 10vw, 100px) clamp(20px, 5vw, 80px)",
-        background: "var(--surface-2)",
-        borderTop: "0.5px solid var(--border)",
-        borderBottom: "0.5px solid var(--border)",
-      }}
-    >
-      <div style={{ maxWidth: "960px", margin: "0 auto" }}>
-        <div style={{ marginBottom: "clamp(32px, 5vw, 56px)" }}>
-          <p
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "11px",
-              letterSpacing: "2px",
-              textTransform: "uppercase",
-              color: "var(--blue)",
-              fontWeight: 600,
-              marginBottom: "12px",
-            }}
-          >
-            What I work with
-          </p>
-          <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(26px, 5vw, 42px)",
-              fontWeight: 700,
-              letterSpacing: "-1px",
-              color: "var(--text-primary)",
-            }}
-          >
-            Skills & technologies
-          </h2>
+    <section id="skills" className="relative bg-[#f7f7fa] px-5 py-20 sm:px-8 sm:py-28">
+      <div className="mx-auto max-w-6xl">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <SectionHeading
+            eyebrow="What I work with"
+            title="Skills & technologies"
+            description="The exact stack from 3+ years of production fintech — Flutter clients, TypeScript backends, payments and hardened APIs."
+          />
+          <Reveal delay={150} className="mb-10 hidden gap-2 sm:mb-14 lg:flex">
+            <div className="flex items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2 text-xs font-medium text-[#5a5a6e]">
+              <span className="h-2 w-2 animate-[pulse-dot_2s_ease-in-out_infinite] rounded-full bg-[#1d9e75]" />
+              Author: OpenPay NG · WikiRide API
+            </div>
+          </Reveal>
         </div>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 240px), 1fr))",
-            gap: "12px",
-          }}
-        >
-          {skills.map((skill) => (
-            <div
-              key={skill.name}
-              style={{
-                background: "var(--surface)",
-                border: "0.5px solid var(--border)",
-                borderRadius: "12px",
-                padding: "18px 20px",
-                display: "flex",
-                alignItems: "flex-start",
-                gap: "12px",
-                transition: "transform 0.2s, box-shadow 0.2s",
-                cursor: "default",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)";
-                (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 24px rgba(26,86,219,0.08)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-                (e.currentTarget as HTMLElement).style.boxShadow = "none";
-              }}
-            >
-              <div
-                style={{
-                  width: "40px",
-                  height: "40px",
-                  borderRadius: "10px",
-                  background: categoryColor[skill.category] ?? "#f0f0f5",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "18px",
-                  flexShrink: 0,
-                }}
-              >
-                {skill.icon}
-              </div>
-              <div style={{ minWidth: 0 }}>
-                <div
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontSize: "14px",
-                    fontWeight: 600,
-                    color: "var(--text-primary)",
-                    marginBottom: "3px",
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                  }}
-                >
-                  {skill.name}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {skills.map((s, i) => (
+            <Reveal key={s.name} delay={(i % 4) * 90} variant="scale">
+              <div className="card-lift group h-full rounded-2xl border border-black/[0.07] bg-white p-5">
+                <div className="mb-4 flex items-start justify-between">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#e8f0fe] text-[#1241a8] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                    <s.icon className="h-5 w-5" />
+                  </div>
+                  <span className="rounded-full bg-black/[0.04] px-2.5 py-1 text-[10.5px] font-semibold uppercase tracking-wide text-[#5a5a6e]">
+                    {s.category}
+                  </span>
                 </div>
-                <div style={{ fontSize: "12px", color: "var(--text-tertiary)", marginBottom: "6px" }}>
-                  {skill.desc}
-                </div>
-                <span
-                  style={{
-                    fontSize: "11px",
-                    fontWeight: 500,
-                    padding: "2px 9px",
-                    borderRadius: "99px",
-                    background: categoryColor[skill.category] ?? "#f0f0f5",
-                    color: categoryText[skill.category] ?? "#5a5a6e",
-                    display: "inline-block",
-                  }}
-                >
-                  {skill.category}
-                </span>
+                <div className="font-display text-[15px] font-bold tracking-tight">{s.name}</div>
+                <div className="mb-3 mt-1 text-[12.5px] text-[#9898a8]">{s.desc}</div>
+                <SkillBar level={s.level} />
+                <div className="mt-2 text-right text-[11px] font-semibold text-[#1a56db]">{s.level}%</div>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
