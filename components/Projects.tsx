@@ -1,268 +1,226 @@
 "use client";
+import { useState } from "react";
+import { ArrowUpRight, FolderGit2, Star } from "lucide-react";
+import { GithubIcon } from "./icons";
+import Reveal from "./Reveal";
+import SectionHeading from "./SectionHeading";
 
-const projects = [
+type Project = {
+  title: string;
+  description: string;
+  tags: string[];
+  link: string;
+  githubLink: string;
+  status: string;
+  category: "Mobile" | "Backend" | "SDK" | "Web";
+  featured?: boolean;
+  gradient: string;
+};
+
+const projects: Project[] = [
   {
-    title: "DevBudget",
+    title: "OpenPay NG",
     description:
-      "A free tool that helps developers estimate monthly infrastructure costs across 25+ popular services — at any user scale. Features Africa Mode that flags services with card restrictions or signup blockers for African developers.",
-    tags: ["React", "Vite", "Node.js", "Open Source"],
-    link: "https://devbudget.vercel.app",
-    githubLink: "https://github.com/Abdul20009/devbudget",
-    status: "Live",
-    accent: "#e6f9f2",
-    accentText: "#0F6E56",
-  },
-  {
-    title: "E-commerce Platform",
-    description:
-      "A full-featured online store with product listings, cart management, order tracking, and Paystack payment integration. Built for Nigerian sellers and buyers.",
-    tags: ["Next.js", "Node.js", "MongoDB", "Paystack", "Cloudinary"],
-    link: "https://hrexclusivelounge.lovable.app/",
+      "Published TypeScript payment SDK unifying Paystack, Flutterwave and Bachs behind one interface. Normalized statuses, payments/transfers/refunds, signature-verified webhooks with Postgres-backed idempotency + stateless fallback. Validated live against Paystack & Flutterwave sandboxes with Vitest + Docker.",
+    tags: ["TypeScript", "Node.js", "PostgreSQL", "Paystack", "Flutterwave", "Bachs"],
+    link: "https://github.com/Abdul20009",
     githubLink: "https://github.com/Abdul20009",
-    status: "Live",
-    accent: "#e8f0fe",
-    accentText: "#1241a8",
+    status: "npm · Live",
+    category: "SDK",
+    featured: true,
+    gradient: "from-[#0f6e56] via-[#1d9e75] to-[#4cc38a]",
   },
   {
-    title: "Fintech App — SMARTROB",
+    title: "WikiRide API",
     description:
-      "A mobile-first financial application handling wallet management, transfers, and transaction history. Built during my time at SMARTROB Technologies. Designed with security and simplicity for everyday users.",
-    tags: ["Flutter", "Node.js", "MongoDB", "Paystack"],
+      "Multi-tenant white-label ride-share backend: fleet, rides, pricing, hubs, tokens, coupons, geofences, maintenance. JWT + rotating refresh, RBAC from seeded catalog, tenant scoping, Zod + Helmet + rate limiting, Pino logging, Vitest/Supertest.",
+    tags: ["TypeScript", "Express", "MongoDB", "RBAC", "Open Source"],
+    link: "https://github.com/Abdul20009",
+    githubLink: "https://github.com/Abdul20009",
+    status: "Open source",
+    category: "Backend",
+    gradient: "from-[#1241a8] via-[#1a56db] to-[#7c3aed]",
+  },
+  {
+    title: "SmartRemit",
+    description:
+      "Cross-border remittance client at SMARTROB: multi-currency transfers, live FX previews, recipient management, real-time status. KYC/compliance onboarding for 3,000+ verified users, biometrics + E2E encryption. 4.6★ App Store.",
+    tags: ["Flutter", "BLoC", "KYC", "Fintech"],
     link: "https://play.google.com/store/apps/details?id=com.fincura.billpayment",
     githubLink: "https://github.com/Abdul20009",
     status: "Live",
-    accent: "#e6f9f2",
-    accentText: "#0F6E56",
+    category: "Mobile",
+    gradient: "from-[#0a5c8a] via-[#0284c7] to-[#22d3ee]",
   },
   {
-    title: "Full-stack Mobile App",
+    title: "Jellupay",
     description:
-      "End-to-end mobile application with Flutter frontend, Node.js/Express backend, MongoDB database, Cloudinary for media, and Paystack payment integration.",
-    tags: ["Flutter", "Node.js", "MongoDB", "Cloudinary", "Paystack"],
+      "Digital wallet serving 8,000+ active users at peak: P2P, airtime, data, electricity, cable TV, real-time balances + history. OTP + fingerprint/Face ID + JWT sessions, spending analytics dashboard that cut support load.",
+    tags: ["Flutter", "Node.js", "Paystack"],
+    link: "https://play.google.com/store/apps/details?id=com.fincura.billpayment",
+    githubLink: "https://github.com/Abdul20009",
+    status: "Live",
+    category: "Mobile",
+    gradient: "from-[#7c2d12] via-[#c2410c] to-[#f59e0b]",
+  },
+  {
+    title: "Fincura + P Cash",
+    description:
+      "Fincura: bill payments for 5,000+ users in launch quarter + auto-crediting referral engine. P Cash: agent banking for 4,000+ users — P2P, agent withdrawals, top-ups, filtered statements, push alerts.",
+    tags: ["Flutter", "Push", "Referrals"],
+    link: "https://play.google.com/store/apps/details?id=com.fincura.billpayment",
+    githubLink: "https://github.com/Abdul20009",
+    status: "Live",
+    category: "Mobile",
+    gradient: "from-[#5a00a8] via-[#7c3aed] to-[#c084fc]",
+  },
+  {
+    title: "RichList Events + Nikklar",
+    description:
+      "RichList (freelance, sole engineer): event discovery, tiered tickets, e-tickets, reminders — 30+ events, 600+ bookings. Nikklar: fibre subscriptions for 2,500+ customers + Deals e-commerce (1,200+ orders in 2 months) with SSO.",
+    tags: ["Flutter", "Node.js", "E-commerce"],
     link: "https://github.com/Abdul20009",
     githubLink: "https://github.com/Abdul20009",
     status: "Live",
-    accent: "#e8f0fe",
-    accentText: "#1241a8",
-  },
-  {
-    title: "Business Websites — Freelance",
-    description:
-      "Custom websites for small local businesses in Lagos with no online presence. Clients identified via Google Maps outreach and converted through WhatsApp.",
-    tags: ["Next.js", "HTML/CSS", "SEO", "Responsive"],
-    link: "https://soul-food-yaba.lovable.app/",
-    githubLink: "https://github.com/Abdul20009",
-    status: "Live",
-    accent: "#e8f0fe",
-    accentText: "#1241a8",
+    category: "Mobile",
+    gradient: "from-[#0f172a] via-[#334155] to-[#1a56db]",
   },
 ];
 
+const filters = ["All", "Mobile", "Backend", "SDK"] as const;
+
 export default function Projects() {
+  const [tab, setTab] = useState<(typeof filters)[number]>("All");
+  const list = projects.filter((p) => tab === "All" || p.category === tab);
+  const [featured, ...rest] = tab === "All" ? projects : list;
+
+  const showFeatured = tab === "All";
+  const grid = showFeatured ? rest : list;
+
   return (
-    <section
-      id="projects"
-      style={{
-        padding: "clamp(60px, 10vw, 100px) clamp(20px, 5vw, 80px)",
-        background: "var(--surface)",
-        borderBottom: "0.5px solid var(--border)",
-      }}
-    >
-      <div style={{ maxWidth: "960px", margin: "0 auto" }}>
-        <div style={{ marginBottom: "clamp(32px, 5vw, 56px)" }}>
-          <p
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "11px",
-              letterSpacing: "2px",
-              textTransform: "uppercase",
-              color: "var(--blue)",
-              fontWeight: 600,
-              marginBottom: "12px",
-            }}
-          >
-            What I&apos;ve built
-          </p>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-end",
-              flexWrap: "wrap",
-              gap: "12px",
-            }}
-          >
-            <h2
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "clamp(26px, 5vw, 42px)",
-                fontWeight: 700,
-                letterSpacing: "-1px",
-                color: "var(--text-primary)",
-              }}
-            >
-              Featured projects
-            </h2>
+    <section id="projects" className="bg-white px-5 py-20 sm:px-8 sm:py-28">
+      <div className="mx-auto max-w-6xl">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <SectionHeading
+            eyebrow="What I've built"
+            title="Featured projects"
+            description="Production fintech, published SDKs and open-source backends — every one tied to real users and live releases."
+          />
+          <Reveal delay={120} className="mb-10 sm:mb-14">
+            <div className="flex flex-wrap gap-2">
+              {filters.map((f) => (
+                <button
+                  key={f}
+                  onClick={() => setTab(f)}
+                  className={`rounded-full px-4 py-2 text-[12.5px] font-medium transition-all ${
+                    tab === f
+                      ? "bg-[#0a0a0f] text-white shadow-lg"
+                      : "border border-black/10 bg-white text-[#5a5a6e] hover:border-black/25 hover:text-black"
+                  }`}
+                >
+                  {f}
+                </button>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+
+        {showFeatured && featured && (
+          <Reveal variant="scale">
             <a
-              href="https://github.com/Abdul20009"
+              href={featured.link}
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                fontSize: "13px",
-                color: "var(--blue)",
-                textDecoration: "none",
-                display: "flex",
-                alignItems: "center",
-                gap: "4px",
-                fontWeight: 500,
-                whiteSpace: "nowrap",
-              }}
+              className="card-lift group mb-5 grid overflow-hidden rounded-3xl border border-black/[0.07] lg:grid-cols-2"
             >
-              View all on GitHub →
-            </a>
-          </div>
-        </div>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 340px), 1fr))",
-            gap: "16px",
-          }}
-        >
-          {projects.map((p) => (
-            <div
-              key={p.title}
-              style={{
-                background: "var(--surface)",
-                border: "0.5px solid var(--border)",
-                borderRadius: "14px",
-                padding: "24px",
-                display: "flex",
-                flexDirection: "column",
-                transition: "transform 0.2s, box-shadow 0.2s, border-color 0.2s",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
-                (e.currentTarget as HTMLElement).style.boxShadow = "0 12px 32px rgba(26,86,219,0.1)";
-                (e.currentTarget as HTMLElement).style.borderColor = "rgba(26,86,219,0.3)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-                (e.currentTarget as HTMLElement).style.boxShadow = "none";
-                (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "flex-start",
-                  marginBottom: "10px",
-                  gap: "8px",
-                }}
-              >
-                <h3
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontSize: "clamp(15px, 2vw, 17px)",
-                    fontWeight: 700,
-                    color: "var(--text-primary)",
-                    letterSpacing: "-0.3px",
-                    flex: 1,
-                  }}
-                >
-                  {p.title}
-                </h3>
-                <span
-                  style={{
-                    fontSize: "11px",
-                    fontWeight: 500,
-                    padding: "3px 10px",
-                    borderRadius: "99px",
-                    background: p.accent,
-                    color: p.accentText,
-                    flexShrink: 0,
-                  }}
-                >
-                  {p.status}
-                </span>
-              </div>
-
-              <p
-                style={{
-                  fontSize: "14px",
-                  color: "var(--text-secondary)",
-                  lineHeight: 1.7,
-                  marginBottom: "16px",
-                  fontWeight: 300,
-                  flex: 1,
-                }}
-              >
-                {p.description}
-              </p>
-
-              <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: "16px" }}>
-                {p.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    style={{
-                      fontSize: "11px",
-                      padding: "3px 10px",
-                      borderRadius: "99px",
-                      background: "var(--surface-2)",
-                      border: "0.5px solid var(--border)",
-                      color: "var(--text-secondary)",
-                    }}
-                  >
-                    {tag}
+              <div className={`relative flex min-h-[260px] flex-col justify-between bg-gradient-to-br p-8 text-white sm:p-10 ${featured.gradient}`}>
+                <div className="hero-grid absolute inset-0 opacity-20" />
+                <div className="relative flex items-center gap-2">
+                  <span className="flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider backdrop-blur">
+                    <Star className="h-3.5 w-3.5" /> Featured · npm
                   </span>
-                ))}
+                  <span className="rounded-full bg-white/15 px-3 py-1.5 text-[11px] font-medium backdrop-blur">
+                    {featured.status}
+                  </span>
+                </div>
+                <div className="relative">
+                  <FolderGit2 className="mb-4 h-10 w-10 opacity-80 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6" />
+                  <div className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl">
+                    {featured.title}
+                  </div>
+                  <div className="mt-2 text-sm text-white/80">Unified payment SDK for Nigerian providers</div>
+                </div>
               </div>
+              <div className="flex flex-col justify-center bg-white p-8 sm:p-10">
+                <p className="text-[15px] font-light leading-[1.75] text-[#5a5a6e]">{featured.description}</p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {featured.tags.map((t) => (
+                    <span key={t} className="rounded-full border border-black/10 bg-[#f7f7fa] px-3 py-1 text-[11.5px] font-medium text-[#3a3a4a]">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-7 flex gap-3">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#1a56db] px-5 py-2.5 text-[13px] font-medium text-white transition-colors group-hover:bg-[#1241a8]">
+                    View project <ArrowUpRight className="h-4 w-4" />
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-black/12 px-5 py-2.5 text-[13px] font-medium">
+                    <GithubIcon className="h-4 w-4" /> Code
+                  </span>
+                </div>
+              </div>
+            </a>
+          </Reveal>
+        )}
 
-              <div style={{ display: "flex", gap: "8px" }}>
-                <a
-                  href={p.githubLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    fontSize: "12px",
-                    color: "var(--text-secondary)",
-                    textDecoration: "none",
-                    padding: "6px 14px",
-                    borderRadius: "99px",
-                    border: "0.5px solid var(--border)",
-                    fontWeight: 500,
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "4px",
-                  }}
-                >
-                  Code ↗
-                </a>
-                <a
-                  href={p.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    fontSize: "12px",
-                    color: p.accentText,
-                    textDecoration: "none",
-                    padding: "6px 14px",
-                    borderRadius: "99px",
-                    background: p.accent,
-                    fontWeight: 500,
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "4px",
-                  }}
-                >
-                  Live Site ↗
-                </a>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {grid.map((p, i) => (
+            <Reveal key={p.title} delay={(i % 3) * 100} variant="up">
+              <div className="card-lift group flex h-full flex-col overflow-hidden rounded-2xl border border-black/[0.07] bg-white">
+                <div className={`relative h-36 bg-gradient-to-br ${p.gradient} overflow-hidden`}>
+                  <div className="hero-grid absolute inset-0 opacity-20" />
+                  <div className="absolute bottom-4 left-5 font-display text-lg font-bold text-white/95">
+                    {p.title}
+                  </div>
+                  <span className="absolute right-4 top-4 rounded-full bg-white/20 px-3 py-1 text-[10.5px] font-semibold uppercase tracking-wider text-white backdrop-blur">
+                    {p.category}
+                  </span>
+                  <ArrowUpRight className="absolute bottom-4 right-4 h-5 w-5 text-white/70 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
+                </div>
+                <div className="flex flex-1 flex-col p-6">
+                  <p className="flex-1 text-[13.8px] font-light leading-[1.7] text-[#5a5a6e]">{p.description}</p>
+                  <div className="mb-4 mt-4 flex flex-wrap gap-1.5">
+                    {p.tags.map((t) => (
+                      <span key={t} className="rounded-full bg-[#f7f7fa] px-2.5 py-1 text-[11px] font-medium text-[#5a5a6e]">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex gap-2 border-t border-black/[0.06] pt-4">
+                    <a href={p.githubLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-[12.5px] font-semibold text-[#5a5a6e] hover:text-black">
+                      <GithubIcon className="h-3.5 w-3.5" /> Code
+                    </a>
+                    <span className="text-black/15">·</span>
+                    <a href={p.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-[12.5px] font-semibold text-[#1a56db] hover:text-[#1241a8]">
+                      Live <ArrowUpRight className="h-3.5 w-3.5" />
+                    </a>
+                  </div>
+                </div>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
+
+        <Reveal className="mt-10 text-center" delay={100}>
+          <a
+            href="https://github.com/Abdul20009"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-black/12 px-6 py-3 text-sm font-medium transition-all hover:-translate-y-0.5 hover:border-black/30 hover:shadow-lg"
+          >
+            <GithubIcon className="h-4 w-4" /> View all on GitHub <ArrowUpRight className="h-4 w-4" />
+          </a>
+        </Reveal>
       </div>
     </section>
   );
