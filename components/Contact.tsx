@@ -4,6 +4,7 @@ import { Mail, Phone, Send, MapPin, Copy, Check } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./icons";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
+import { Magnetic, Tilt } from "./Effects";
 
 const socials = [
   { label: "Email", value: "abdulrahmanhamza270@gmail.com", href: "mailto:abdulrahmanhamza270@gmail.com", icon: Mail },
@@ -82,12 +83,14 @@ export default function Contact() {
                   className="w-full resize-none rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none transition-all placeholder:text-[#9898a8] focus:border-[#1a56db]/60 focus:ring-4 focus:ring-[#1a56db]/10"
                 />
               </label>
-              <button
-                type="submit"
-                className="group mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-[#1a56db] px-6 py-3.5 text-sm font-medium text-white shadow-[0_14px_30px_-12px_rgba(26,86,219,0.7)] transition-all hover:-translate-y-0.5 hover:bg-[#1241a8]"
-              >
-                Send message <Send className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-0.5" />
-              </button>
+              <Magnetic strength={12} className="mt-5 block w-full">
+                <button
+                  type="submit"
+                  className="btn-sheen animate-glow group flex w-full items-center justify-center gap-2 rounded-xl bg-[#1a56db] px-6 py-3.5 text-sm font-medium text-white transition-all hover:-translate-y-0.5 hover:bg-[#1241a8] active:scale-[0.98]"
+                >
+                  Send message <Send className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-0.5" />
+                </button>
+              </Magnetic>
               <p className="mt-3 text-center text-[12px] text-[#9898a8]">
                 Opens your email app — no spam, ever.
               </p>
@@ -96,8 +99,9 @@ export default function Contact() {
 
           {/* right */}
           <div className="flex flex-col gap-4">
-            <Reveal variant="right" delay={80}>
-              <div className="rounded-3xl bg-[#0b0b12] p-6 text-white sm:p-8">
+            <Reveal variant="blur" delay={80}>
+              <Tilt max={5}>
+              <div className="card-sheen glow-border rounded-3xl bg-[#0b0b12] p-6 text-white sm:p-8">
                 <div className="flex items-center gap-2 text-[12px] font-medium text-[#4cc38a]">
                   <span className="h-2 w-2 animate-[pulse-dot_2s_ease-in-out_infinite] rounded-full bg-[#4cc38a]" />
                   Actively looking · replies within 24h
@@ -119,16 +123,17 @@ export default function Contact() {
                   </span>
                 </div>
               </div>
+              </Tilt>
             </Reveal>
 
             <div className="grid gap-3 sm:grid-cols-2">
               {socials.map((s, i) => (
-                <Reveal key={s.label} delay={i * 70} variant="scale">
+                <Reveal key={s.label} delay={i * 70} variant="zoom">
                   <a
                     href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="card-lift group flex items-center gap-3 rounded-2xl border border-black/[0.07] bg-white p-4"
+                    className="card-lift card-sheen group flex items-center gap-3 rounded-2xl border border-black/[0.07] bg-white p-4"
                   >
                     <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#f7f7fa] text-[#3a3a4a] transition-colors group-hover:bg-[#1a56db] group-hover:text-white">
                       <s.icon className="h-[18px] w-[18px]" />
