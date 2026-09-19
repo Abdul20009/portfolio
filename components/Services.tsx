@@ -1,6 +1,7 @@
 "use client";
 import { Smartphone, Globe, Server, CreditCard, ArrowUpRight } from "lucide-react";
 import Reveal from "./Reveal";
+import { Tilt } from "./Effects";
 
 const services = [
   {
@@ -55,30 +56,33 @@ export default function Services() {
 
         <div className="grid gap-4 md:grid-cols-2">
           {services.map((s, i) => (
-            <Reveal key={s.title} delay={(i % 2) * 110} variant={i % 2 ? "right" : "left"}>
-              <div className="group relative h-full overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-7 backdrop-blur transition-all duration-500 hover:-translate-y-1.5 hover:border-[#1a56db]/50 hover:bg-white/[0.06] hover:shadow-[0_25px_60px_-20px_rgba(26,86,219,0.5)] sm:p-8">
-                <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[radial-gradient(circle,rgba(26,86,219,0.25),transparent_65%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                <div className="relative flex items-start justify-between">
-                  <div className={`flex h-12 w-12 items-center justify-center rounded-2xl ${s.accent} transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6`}>
-                    <s.icon className="h-5 w-5" />
-                  </div>
-                  <span className="font-display text-sm font-bold text-white/25 transition-colors group-hover:text-white/50">
-                    /{s.num}
-                  </span>
-                </div>
-                <h3 className="font-display relative mt-5 text-[19px] font-bold tracking-tight">{s.title}</h3>
-                <p className="relative mt-2.5 text-[14px] font-light leading-[1.7] text-white/60">{s.desc}</p>
-                <div className="relative mt-5 flex flex-wrap gap-2">
-                  {s.bullets.map((b) => (
-                    <span key={b} className="rounded-full border border-white/12 bg-white/[0.05] px-3 py-1.5 text-[11.5px] font-medium text-white/75">
-                      {b}
+            <Reveal key={s.title} delay={(i % 2) * 110} variant={i % 2 ? "rotate" : "blur"}>
+              <Tilt max={6} className="h-full">
+                <div className="card-sheen group relative h-full overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-7 backdrop-blur transition-all duration-500 hover:-translate-y-1.5 hover:border-[#1a56db]/50 hover:bg-white/[0.06] hover:shadow-[0_25px_60px_-20px_rgba(26,86,219,0.5)] sm:p-8">
+                  <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[radial-gradient(circle,rgba(26,86,219,0.25),transparent_65%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="animate-drift absolute -bottom-20 -left-20 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(124,58,237,0.16),transparent_65%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="relative flex items-start justify-between">
+                    <div className={`flex h-12 w-12 items-center justify-center rounded-2xl ${s.accent} transition-all duration-500 group-hover:scale-115 group-hover:-rotate-12 group-hover:shadow-lg`}>
+                      <s.icon className="h-5 w-5" />
+                    </div>
+                    <span className="font-display text-sm font-bold text-white/25 transition-colors group-hover:text-white/60">
+                      /{s.num}
                     </span>
-                  ))}
+                  </div>
+                  <h3 className="font-display relative mt-5 text-[19px] font-bold tracking-tight">{s.title}</h3>
+                  <p className="relative mt-2.5 text-[14px] font-light leading-[1.7] text-white/60">{s.desc}</p>
+                  <div className="relative mt-5 flex flex-wrap gap-2">
+                    {s.bullets.map((b) => (
+                      <span key={b} className="rounded-full border border-white/12 bg-white/[0.05] px-3 py-1.5 text-[11.5px] font-medium text-white/75 transition-colors group-hover:border-white/25">
+                        {b}
+                      </span>
+                    ))}
+                  </div>
+                  <a href="#contact" className="relative mt-6 inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#7ea4ff] transition-all hover:gap-2.5 hover:text-white">
+                    Start a project <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </a>
                 </div>
-                <a href="#contact" className="relative mt-6 inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#7ea4ff] transition-colors hover:text-white">
-                  Start a project <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </a>
-              </div>
+              </Tilt>
             </Reveal>
           ))}
         </div>
