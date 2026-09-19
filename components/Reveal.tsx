@@ -5,7 +5,7 @@ import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 
 type RevealProps = {
   children: ReactNode;
   delay?: number;
-  variant?: "up" | "left" | "right" | "scale" | "fade";
+  variant?: "up" | "left" | "right" | "scale" | "fade" | "blur" | "zoom" | "rotate";
   className?: string;
   as?: "div" | "section" | "span" | "li" | "article";
 };
@@ -16,6 +16,9 @@ const variantClass: Record<string, string> = {
   right: "reveal-right",
   scale: "reveal-scale",
   fade: "",
+  blur: "reveal-blur",
+  zoom: "reveal-zoom",
+  rotate: "reveal-rotate",
 };
 
 export default function Reveal({
