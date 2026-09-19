@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 
 const links = [
@@ -16,6 +16,8 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [progress, setProgress] = useState(0);
   const [active, setActive] = useState("");
+  const [hidden, setHidden] = useState(false);
+  const lastY = useRef(0);
 
   useEffect(() => {
     const onScroll = () => {
@@ -23,6 +25,14 @@ export default function Navbar() {
       setScrolled(y > 24);
       const h = document.documentElement.scrollHeight - window.innerHeight;
       setProgress(h > 0 ? Math.min(1, y / h) : 0);
+      // auto-hide on scroll down, reveal on scroll up
+      if (!menuOpen) {
+        setHidden(y > 320 && y > lastY.current + 4);
+        if (y < lastY.current - 4) setHidden(false);
+      } else {
+        setHidden(false);
+      }
+      lastY.current = y;
 
       // simple scroll-spy
       const ids = links.map((l) => l.href.slice(1));
@@ -36,7 +46,7 @@ export default function Navbar() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [menuOpen]);
 
   return (
     <>
@@ -49,7 +59,9 @@ export default function Navbar() {
       </div>
 
       <nav
-        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
+        className={`nav-shell fixed top-0 left-0 right-0 z-[100] ${
+          hidden ? "nav-hidden" : ""
+        } ${
           scrolled || menuOpen
             ? "bg-white/85 backdrop-blur-xl border-b border-black/[0.07] shadow-[0_8px_30px_-18px_rgba(0,0,0,0.25)]"
             : "bg-transparent border-b border-transparent"
@@ -83,7 +95,7 @@ export default function Navbar() {
           <div className="desktop-nav hidden md:block">
             <a
               href="#contact"
-              className="group inline-flex items-center gap-1.5 rounded-full bg-[#0a0a0f] px-5 py-2.5 text-[13px] font-medium text-white transition-all hover:bg-[#1a56db] hover:shadow-[0_10px_25px_-10px_rgba(26,86,219,0.7)]"
+              className="btn-sheen group inline-flex items-center gap-1.5 rounded-full bg-[#0a0a0f] px-5 py-2.5 text-[13px] font-medium text-white transition-all hover:-translate-y-0.5 hover:bg-[#1a56db] hover:shadow-[0_10px_25px_-10px_rgba(26,86,219,0.7)]"
             >
               Hire me
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
