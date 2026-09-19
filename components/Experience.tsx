@@ -83,10 +83,10 @@ export default function Experience() {
           <div className="timeline-line absolute bottom-4 left-[13px] top-2 w-[2px] rounded-full" />
           <div className="flex flex-col gap-5">
             {items.map((it, i) => (
-              <Reveal key={it.role} delay={i * 100} variant={i % 2 ? "right" : "left"}>
+              <Reveal key={it.role} delay={i * 100} variant="blur">
                 <div
-                  className={`card-lift relative rounded-2xl border bg-white p-6 sm:p-7 ${
-                    it.current ? "border-[#1a56db]/30 shadow-[0_18px_45px_-20px_rgba(26,86,219,0.45)]" : "border-black/[0.07]"
+                  className={`card-lift card-sheen glow-border relative rounded-2xl border bg-white p-6 transition-shadow sm:p-7 ${
+                    it.current ? "border-[#1a56db]/30 shadow-[0_18px_45px_-20px_rgba(26,86,219,0.45)]" : "border-black/[0.07] hover:shadow-[0_20px_45px_-22px_rgba(0,0,0,0.25)]"
                   }`}
                 >
                   <span
