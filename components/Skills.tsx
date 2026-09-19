@@ -36,7 +36,7 @@ function SkillBar({ level }: { level: number }) {
   return (
     <div ref={ref} className="h-1.5 overflow-hidden rounded-full bg-black/[0.07]">
       <div
-        className="h-full rounded-full bg-gradient-to-r from-[#1a56db] to-[#7c3aed] transition-[width] duration-[1.2s] ease-[cubic-bezier(0.22,1,0.36,1)]"
+        className="bar-shimmer h-full rounded-full bg-gradient-to-r from-[#1a56db] to-[#7c3aed] transition-[width] duration-[1.2s] ease-[cubic-bezier(0.22,1,0.36,1)]"
         style={{ width: `${w}%` }}
       />
     </div>
@@ -63,13 +63,13 @@ export default function Skills() {
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {skills.map((s, i) => (
-            <Reveal key={s.name} delay={(i % 4) * 90} variant="scale">
-              <div className="card-lift group h-full rounded-2xl border border-black/[0.07] bg-white p-5">
+            <Reveal key={s.name} delay={(i % 4) * 90} variant="blur">
+              <div className="card-lift card-sheen glow-border group h-full rounded-2xl border border-black/[0.07] bg-white p-5">
                 <div className="mb-4 flex items-start justify-between">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#e8f0fe] text-[#1241a8] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#e8f0fe] text-[#1241a8] transition-all duration-500 group-hover:scale-110 group-hover:rotate-[8deg] group-hover:bg-[#1a56db] group-hover:text-white group-hover:shadow-[0_10px_25px_-10px_rgba(26,86,219,0.7)]">
                     <s.icon className="h-5 w-5" />
                   </div>
-                  <span className="rounded-full bg-black/[0.04] px-2.5 py-1 text-[10.5px] font-semibold uppercase tracking-wide text-[#5a5a6e]">
+                  <span className="rounded-full bg-black/[0.04] px-2.5 py-1 text-[10.5px] font-semibold uppercase tracking-wide text-[#5a5a6e] transition-colors group-hover:bg-[#e8f0fe] group-hover:text-[#1241a8]">
                     {s.category}
                   </span>
                 </div>
