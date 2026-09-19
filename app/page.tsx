@@ -6,10 +6,13 @@ import Experience from "@/components/Experience";
 import Services from "@/components/Services";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import { CursorGlow, BackToTop, PageIntro } from "@/components/Effects";
 
 export default function Home() {
   return (
     <>
+      <PageIntro />
+      <CursorGlow />
       <Navbar />
       <main>
         <Hero />
@@ -20,6 +23,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <BackToTop />
     </>
   );
 }
